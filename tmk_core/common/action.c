@@ -359,6 +359,16 @@ void process_action(keyrecord_t *record, action_t action)
             }
             break;
 #endif
+#ifdef APPLE_FN_ENABLE
+        /* Apple Fn */
+        case ACT_APPLE_FN:
+            if (event.pressed) {
+                register_code(action.key.code);
+            } else {
+                unregister_code(action.key.code);
+            }
+            break;
+#endif
 #ifdef MOUSEKEY_ENABLE
         /* Mouse key */
         case ACT_MOUSEKEY:
@@ -773,6 +783,10 @@ void register_code(uint8_t code)
     else if IS_CONSUMER(code) {
         host_consumer_send(KEYCODE2CONSUMER(code));
     }
+    else if IS_APPLE_FN(code) {
+        add_key(code);
+        send_keyboard_report();
+    }
 }
 
 /** \brief Utilities for actions. (FIXME: Needs better description)
@@ -831,6 +845,10 @@ void unregister_code(uint8_t code)
     }
     else if IS_CONSUMER(code) {
         host_consumer_send(0);
+    }
+    else if IS_APPLE_FN(code) {
+        del_key(code);
+        send_keyboard_report();
     }
 }
 
@@ -957,6 +975,7 @@ void debug_action(action_t action)
         case ACT_LMODS_TAP:         dprint("ACT_LMODS_TAP");         break;
         case ACT_RMODS_TAP:         dprint("ACT_RMODS_TAP");         break;
         case ACT_USAGE:             dprint("ACT_USAGE");             break;
+        case ACT_APPLE_FN:          dprint("ACT_APPLE_FN");          break;
         case ACT_MOUSEKEY:          dprint("ACT_MOUSEKEY");          break;
         case ACT_LAYER:             dprint("ACT_LAYER");             break;
         case ACT_LAYER_TAP:         dprint("ACT_LAYER_TAP");         break;

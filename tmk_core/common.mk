@@ -60,6 +60,11 @@ ifeq ($(strip $(EXTRAKEY_ENABLE)), yes)
     TMK_COMMON_DEFS += -DEXTRAKEY_ENABLE
 endif
 
+ifeq ($(strip $(APPLE_FN_ENABLE)), yes)
+    TMK_COMMON_DEFS += -DAPPLE_FN_ENABLE
+endif
+
+
 ifeq ($(strip $(RAW_ENABLE)), yes)
     TMK_COMMON_DEFS += -DRAW_ENABLE
 endif
