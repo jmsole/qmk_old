@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |----------------------------------------------------------------|
    * |Shift   |  Z|  X|  C|  V|  B|  N|  M|  ,|  .|  /|Shift | Up|PgDn|
    * |----------------------------------------------------------------|
-   * |Ctrl|Alt |Win |        Space          |Alt|FN1|Ctrl|Lef|Dow|Rig |
+   * |Ctrl|Alt |Win |        Space          |Alt|FN1|APFn|Lef|Dow|Rig |
    * `----------------------------------------------------------------'
    */
 [_BL] = KEYMAP_ANSI(
@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_LBRC, KC_RBRC,KC_BSLS,KC_DEL, \
   LT(_NL, KC_BSPC) , KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,         KC_ENT,KC_PGUP,  \
   KC_LSPO,         KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,   KC_RSPC,KC_UP,KC_PGDN, \
-  MT(MOD_LCTL, KC_LBRC), KC_LALT,KC_LGUI,                KC_SPC,                        KC_RALT,MO(_FL),MT(MOD_RCTL, KC_RBRC), KC_LEFT,KC_DOWN,KC_RGHT),
+  KC_LCTL, KC_LALT,KC_LGUI,                KC_SPC,                        KC_RALT,MO(_FL), KC_APFN, KC_LEFT,KC_DOWN,KC_RGHT),
 
   /* Keymap _FL: Function Layer
    * ,----------------------------------------------------------------.
@@ -96,19 +96,19 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
 
     case MACRO_BREATH_SPEED_INC:
       if (record->event.pressed) {
-        breathing_speed_inc(1);
+        breathing_period_inc();
       }
       break;
 
     case MACRO_BREATH_SPEED_DEC:
       if (record->event.pressed) {
-        breathing_speed_dec(1);
+        breathing_period_dec();
       }
       break;
 
     case MACRO_BREATH_DEFAULT:
       if (record->event.pressed) {
-        breathing_defaults();
+        breathing_disable();
       }
       break;
 
