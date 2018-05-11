@@ -53,17 +53,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |----------------------------------------------------------------|
    * |CAPS  |<- |Dn | ->|   |   |BrT|   |   |   |   |   |        |End |
    * |----------------------------------------------------------------|
-   * |        |Bl-|BL |BL+|Br-|BrD|Br+|VU-|VU+|MUT|   |   McL|MsU|McR |
+   * |        |   |   |   |Br-|BrD|Br+|   |Bl-|BL+|BL |   VU-|| >||VU+|
    * |----------------------------------------------------------------|
-   * |    |    |    |                       |   |   |    |MsL|MsD|MsR |
+   * |    |    |    |                       |   |   |    |<< |MUT | >>|
    * `----------------------------------------------------------------'
    */
 [_FL] = KEYMAP_ANSI(
   _______, KC_F1 ,KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_DEL, KC_INS ,  \
   _______,_______, KC_UP,_______,_______, _______,_______,_______,_______,_______, KC_PSCR,_______,_______, _______,KC_HOME, \
   KC_CAPS,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,M_BRTOG,_______,_______,_______,_______,_______,        _______,KC_END, \
-  _______,BL_DEC ,BL_TOGG,BL_INC , M_BSPDD,M_BDFLT, M_BSPDU,KC_VOLD,KC_VOLU,KC_MUTE,_______,KC_BTN1, KC_MS_U, KC_BTN2, \
-  _______,_______,_______,                 _______,               _______,_______,_______,KC_MS_L,KC_MS_D, KC_MS_R),
+  _______,_______,_______,_______, M_BSPDD,M_BDFLT, M_BSPDU,_______,BL_DEC ,BL_INC ,BL_TOGG,KC_VOLD, KC_MPLY, KC_VOLU, \
+  _______,_______,_______,                 _______,               _______,_______,_______,KC_MRWD,KC_MUTE, KC_MFFD),
 
   /* Keymap _CL: Function Layer
    * ,----------------------------------------------------------------.
@@ -73,42 +73,54 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |----------------------------------------------------------------|
    * |      |<- |Dn | ->|   |   |   | 1 | 2 | 3 |   |   |        |    |
    * |----------------------------------------------------------------|
-   * |        |   |   |   |   |   |   | 0 |   |   |   |   McL|MsU|McR |
+   * |        |   |   |   |   |   |   | 0 |   |   |   |      |   |    |
    * |----------------------------------------------------------------|
-   * |    |    |    |                       |   |   |    |MsL|MsD|MsR |
+   * |    |    |    |                       |   |   |    |   |   |    |
    * `----------------------------------------------------------------'
    */
 [_NL] = KEYMAP_ANSI(
   _______, _______,_______,_______,_______,_______,_______,KC_P7  ,KC_P8  ,KC_P9  ,_______,_______,_______,_______,_______,  \
   _______,_______,  KC_UP,_______,_______, _______,_______,KC_P4  ,KC_P5  ,KC_P6  ,_______,_______,_______, _______,_______, \
   _______,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,_______,KC_P1  ,KC_P2  ,KC_P3  ,_______,_______,        _______,_______, \
-  _______,_______,_______,_______,_______,_______, _______,KC_P0  ,_______,_______,_______,KC_BTN1, KC_MS_U, KC_BTN2, \
-  _______,_______,_______,                 _______,               _______,_______,_______,KC_MS_L,KC_MS_D, KC_MS_R),
+  _______,_______,_______,_______,_______,_______, _______,KC_P0  ,_______,_______,_______,_______,_______,_______, \
+  _______,_______,_______,                 _______,               _______,_______,_______,_______,_______,_______),
 };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
     switch (id) {
     case MACRO_BREATH_TOGGLE:
-      if (record->event.pressed) {
-        breathing_toggle();
+      if (record->event.pressed)
+      {
+        #ifdef BACKLIGHT_BREATHING
+          breathing_toggle();
+        #endif
       }
       break;
 
     case MACRO_BREATH_SPEED_INC:
-      if (record->event.pressed) {
-        breathing_period_inc();
+      if (record->event.pressed)
+      {
+        #ifdef BACKLIGHT_BREATHING
+          breathing_period_inc();
+        #endif
       }
       break;
 
     case MACRO_BREATH_SPEED_DEC:
-      if (record->event.pressed) {
-        breathing_period_dec();
+      if (record->event.pressed)
+      {
+        #ifdef BACKLIGHT_BREATHING
+          breathing_period_dec();
+        #endif
       }
       break;
 
     case MACRO_BREATH_DEFAULT:
-      if (record->event.pressed) {
-        breathing_disable();
+      if (record->event.pressed)
+      {
+        #ifdef BACKLIGHT_BREATHING
+          breathing_period_default();
+        #endif
       }
       break;
 
