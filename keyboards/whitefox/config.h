@@ -21,18 +21,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PREVENT_STUCK_MODIFIERS
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0x1c11
-#define PRODUCT_ID      0xb04d
+#define VENDOR_ID       0x05AC
+#define PRODUCT_ID      0x0267
 #define DEVICE_VER      0x0001
-#define MANUFACTURER Input Club
-#define PRODUCT WhiteFox/QMK
+#define MANUFACTURER    Input Club
+#define PRODUCT         NightFox
 
 /* key matrix size */
 #define MATRIX_ROWS 9
 #define MATRIX_COLS 8
 
 /* number of backlight levels */
-#define BACKLIGHT_LEVELS 3
+#define BACKLIGHT_LEVELS 8
 
 #define LED_BRIGHTNESS_LO       100
 #define LED_BRIGHTNESS_HI       255
