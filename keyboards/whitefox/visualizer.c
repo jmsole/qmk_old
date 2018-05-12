@@ -44,7 +44,7 @@ void update_user_visualizer_state(visualizer_state_t* state, visualizer_keyboard
     // state->status.default_layer
     // state->status.leds (see led.h for available statuses)
 
-    if (initial_update) { initial_update=false; start_keyframe_animation(&led_test_animation); }
+    if (initial_update) { initial_update=false; start_keyframe_animation(&default_startup_animation); }
 }
 
 

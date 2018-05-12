@@ -97,7 +97,7 @@ keyframe_animation_t default_startup_animation = {
 #if LCD_ENABLE
         0, 
 #endif
-        gfxMillisecondsToTicks(5000)},
+        gfxMillisecondsToTicks(1000)},
     .frame_functions = {
             keyframe_enable,
 #if LCD_ENABLE
@@ -136,7 +136,7 @@ keyframe_animation_t default_suspend_animation = {
 
 keyframe_animation_t led_test_animation = {
     .num_frames = 14,
-    .loop = true,
+    .loop = false,
     .frame_lengths = {
         gfxMillisecondsToTicks(1000), // fade in
         gfxMillisecondsToTicks(1000), // no op (leds on)
