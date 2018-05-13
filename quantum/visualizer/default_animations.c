@@ -86,44 +86,24 @@ static bool keyframe_fade_out(keyframe_animation_t* animation, visualizer_state_
 // Don't worry, if the startup animation is long, you can use the keyboard like normal
 // during that time
 keyframe_animation_t default_startup_animation = {
-#if LCD_ENABLE
-    .num_frames = 3,
-#else
     .num_frames = 2,
-#endif
     .loop = false,
     .frame_lengths = {
-        0, 
-#if LCD_ENABLE
-        0, 
-#endif
-        gfxMillisecondsToTicks(1000)},
+        0,
+        gfxMillisecondsToTicks(1200)},
     .frame_functions = {
             keyframe_enable,
-#if LCD_ENABLE
-            lcd_keyframe_draw_logo,
-#endif
             keyframe_fade_in,
     },
 };
 
 keyframe_animation_t default_suspend_animation = {
-#if LCD_ENABLE
-    .num_frames = 3,
-#else
     .num_frames = 2,
-#endif
     .loop = false,
     .frame_lengths = {
-#if LCD_ENABLE
-        0, 
-#endif
-        gfxMillisecondsToTicks(1000), 
+        gfxMillisecondsToTicks(1200),
         0},
     .frame_functions = {
-#if LCD_ENABLE
-            lcd_keyframe_display_layer_text,
-#endif
             keyframe_fade_out,
             keyframe_disable,
     },

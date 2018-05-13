@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0x05AC
-#define PRODUCT_ID      0x0267
+#define PRODUCT_ID      0x0255
 #define DEVICE_VER      0x0001
 #define MANUFACTURER    Input Club
 #define PRODUCT         NightFox
