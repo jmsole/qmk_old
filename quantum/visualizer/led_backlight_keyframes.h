@@ -38,7 +38,9 @@ bool led_backlight_keyframe_normal_orientation(keyframe_animation_t* animation, 
 bool led_backlight_keyframe_disable(keyframe_animation_t* animation, visualizer_state_t* state);
 bool led_backlight_keyframe_enable(keyframe_animation_t* animation, visualizer_state_t* state);
 
-extern keyframe_animation_t led_test_animation;
+// extern keyframe_animation_t led_test_animation;
+extern keyframe_animation_t layer_mac_animation;
+extern keyframe_animation_t layer_win_animation;
 
 
 #endif /* LED_KEYFRAMES_H */

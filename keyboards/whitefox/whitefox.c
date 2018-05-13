@@ -26,9 +26,19 @@ void matrix_scan_user(void) {
 
 void matrix_init_kb(void) {
   matrix_init_user();
+#ifndef VISUALIZER_ENABLE
+  lcd_backlight_hal_init();
+#endif
 };
 
 void matrix_scan_kb(void) {
   matrix_scan_user();
 };
 
+__attribute__ ((weak))
+void user_layer_mac(void){
+}
+
+__attribute__ ((weak))
+void user_layer_win(void){
+}

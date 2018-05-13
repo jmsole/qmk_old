@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "quantum.h"
 
+void user_layer_mac(void);
+void user_layer_win(void);
 /* WhiteFox
  * ,---------------------------------------------------------------.
  * |Esc|  1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =|  \|  `|Ins|

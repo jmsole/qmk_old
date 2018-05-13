@@ -57,4 +57,14 @@ void user_visualizer_resume(visualizer_state_t* state) {
     start_keyframe_animation(&default_startup_animation);
 }
 
+void user_layer_mac(visualizer_state_t* state) {
+    // initial_update = true;
+    start_keyframe_animation(&layer_mac_animation);
+}
+
+void user_layer_win(visualizer_state_t* state) {
+    // initial_update = true;
+    start_keyframe_animation(&layer_win_animation);
+}
+
 #endif /* KEYBOARDS_WHITEFOX_SIMPLE_VISUALIZER_H_ */

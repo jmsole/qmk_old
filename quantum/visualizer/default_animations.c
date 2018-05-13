@@ -131,46 +131,125 @@ keyframe_animation_t default_suspend_animation = {
 #endif
 
 #if defined(BACKLIGHT_ENABLE)
-#define CROSSFADE_TIME 1000
-#define GRADIENT_TIME 3000
+#define CROSSFADE_TIME 400
+#define GRADIENT_TIME 650
 
-keyframe_animation_t led_test_animation = {
-    .num_frames = 14,
+// keyframe_animation_t led_test_animation = {
+//     .num_frames = 14,
+//     .loop = false,
+//     .frame_lengths = {
+//         gfxMillisecondsToTicks(1000), // fade in
+//         gfxMillisecondsToTicks(1000), // no op (leds on)
+//         gfxMillisecondsToTicks(1000), // fade out
+//         gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
+//         gfxMillisecondsToTicks(GRADIENT_TIME), // left to rigt (outside in)
+//         gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
+//         gfxMillisecondsToTicks(GRADIENT_TIME), // top_to_bottom
+//         0,           // mirror leds
+//         gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
+//         gfxMillisecondsToTicks(GRADIENT_TIME), // left_to_right (mirrored, so inside out)
+//         gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
+//         gfxMillisecondsToTicks(GRADIENT_TIME), // top_to_bottom
+//         0,           // normal leds
+//         gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
+
+//     },
+//     .frame_functions = {
+//         led_backlight_keyframe_fade_in_all,
+//         keyframe_no_operation,
+//         led_backlight_keyframe_fade_out_all,
+//         led_backlight_keyframe_crossfade,
+//         led_backlight_keyframe_left_to_right_gradient,
+//         led_backlight_keyframe_crossfade,
+//         led_backlight_keyframe_top_to_bottom_gradient,
+//         led_backlight_keyframe_mirror_orientation,
+//         led_backlight_keyframe_crossfade,
+//         led_backlight_keyframe_left_to_right_gradient,
+//         led_backlight_keyframe_crossfade,
+//         led_backlight_keyframe_top_to_bottom_gradient,
+//         led_backlight_keyframe_normal_orientation,
+//         led_backlight_keyframe_crossfade,
+//     },
+// };
+// #endif
+
+keyframe_animation_t layer_mac_animation = {
+    .num_frames = 7,
     .loop = false,
     .frame_lengths = {
-        gfxMillisecondsToTicks(1000), // fade in
-        gfxMillisecondsToTicks(1000), // no op (leds on)
-        gfxMillisecondsToTicks(1000), // fade out
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-        gfxMillisecondsToTicks(GRADIENT_TIME), // left to rigt (outside in)
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-        gfxMillisecondsToTicks(GRADIENT_TIME), // top_to_bottom
+        // gfxMillisecondsToTicks(500), // no op (leds on)
+        // gfxMillisecondsToTicks(1000), // fade in
+        gfxMillisecondsToTicks(200), // no op (leds on)
         0,           // mirror leds
         gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-        gfxMillisecondsToTicks(GRADIENT_TIME), // left_to_right (mirrored, so inside out)
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-        gfxMillisecondsToTicks(GRADIENT_TIME), // top_to_bottom
-        0,           // normal leds
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-
+        gfxMillisecondsToTicks(GRADIENT_TIME), // left to rigt (outside in)
+        // gfxMillisecondsToTicks(GRADIENT_TIME), // left to rigt (outside in)
+        gfxMillisecondsToTicks(GRADIENT_TIME), // left to rigt (outside in)
+        gfxMillisecondsToTicks(300), // crossfade
+        gfxMillisecondsToTicks(300), // fade in
+        // gfxMillisecondsToTicks(800), // fade in
     },
     .frame_functions = {
-        led_backlight_keyframe_fade_in_all,
+        // keyframe_no_operation,
+        // led_backlight_keyframe_fade_in_all,
         keyframe_no_operation,
-        led_backlight_keyframe_fade_out_all,
+        led_backlight_keyframe_normal_orientation,
         led_backlight_keyframe_crossfade,
         led_backlight_keyframe_left_to_right_gradient,
+        // led_backlight_keyframe_left_to_right_gradient,
+        led_backlight_keyframe_left_to_right_gradient,
         led_backlight_keyframe_crossfade,
-        led_backlight_keyframe_top_to_bottom_gradient,
+        led_backlight_keyframe_fade_in_all,
+    },
+};
+
+keyframe_animation_t layer_win_animation = {
+    .num_frames = 7,
+    .loop = false,
+    .frame_lengths = {
+        // gfxMillisecondsToTicks(500), // no op (leds on)
+        // gfxMillisecondsToTicks(1000), // fade in
+        gfxMillisecondsToTicks(200), // no op (leds on)
+        0,           // mirror leds
+        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
+        gfxMillisecondsToTicks(GRADIENT_TIME), // left to rigt (outside in)
+        // gfxMillisecondsToTicks(GRADIENT_TIME), // left to rigt (outside in)
+        gfxMillisecondsToTicks(GRADIENT_TIME), // left to rigt (outside in)
+        gfxMillisecondsToTicks(300), // crossfade
+        gfxMillisecondsToTicks(300), // fade in
+        // gfxMillisecondsToTicks(800), // fade in
+    },
+    .frame_functions = {
+        // keyframe_no_operation,
+        // led_backlight_keyframe_fade_in_all,
+        keyframe_no_operation,
         led_backlight_keyframe_mirror_orientation,
         led_backlight_keyframe_crossfade,
         led_backlight_keyframe_left_to_right_gradient,
+        // led_backlight_keyframe_left_to_right_gradient,
+        led_backlight_keyframe_left_to_right_gradient,
         led_backlight_keyframe_crossfade,
-        led_backlight_keyframe_top_to_bottom_gradient,
-        led_backlight_keyframe_normal_orientation,
-        led_backlight_keyframe_crossfade,
+        led_backlight_keyframe_fade_in_all,
     },
 };
+// keyframe_animation_t layer_change_animation = {
+//     .num_frames = 6,
+//     .loop = false,
+//     .frame_lengths = {
+//         0,
+//         gfxMillisecondsToTicks(1000),
+//         gfxMillisecondsToTicks(1000),
+//         0,
+//         0,
+//         gfxMillisecondsToTicks(1000),},
+//     .frame_functions = {
+//             keyframe_enable,
+//             keyframe_fade_in,
+//             keyframe_fade_out,
+//             keyframe_disable,
+//             keyframe_enable,
+//             keyframe_fade_in,
+//     },
+// };
 #endif
-
 #endif

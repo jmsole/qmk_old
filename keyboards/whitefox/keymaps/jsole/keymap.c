@@ -113,7 +113,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
         /* Layer 3: Super Layer
      * ,---------------------------------------------------------------.
-     * |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+     * |Rst|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
      * |---------------------------------------------------------------|
      * |     |   |Win|   |   |   |   |   |   |   |   |   |   |     |   |
      * |---------------------------------------------------------------|
@@ -125,7 +125,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `---------------------------------------------------------------'
      */
     [_SL] = KEYMAP_TRUEFOX( \
-        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,\
+        RESET  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,\
         XXXXXXX ,XXXXXXX,    WIN,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,       XXXXXXX,\
         XXXXXXX  ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,              XXXXXXX,XXXXXXX,\
         XXXXXXX   ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   MAC,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,       XXXXXXX,       XXXXXXX,\
@@ -138,11 +138,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MAC:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_MAC);
+        user_layer_mac();
       }
       return false;
     case WIN:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_WIN);
+        user_layer_win();
       }
       return false;
   }
