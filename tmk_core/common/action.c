@@ -853,7 +853,7 @@ void unregister_code(uint8_t code)
         host_consumer_send(0);
     }
     else if IS_APPLE_FN(code) {
-        add_key(code);
+        del_key(code);
         send_keyboard_report();
     }
     #ifdef MOUSEKEY_ENABLE
