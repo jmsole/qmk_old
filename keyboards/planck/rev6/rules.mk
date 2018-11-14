@@ -41,6 +41,7 @@ DFU_ARGS = -d 0483:df11 -a 0 -s 0x08000000:leave
 # Build Options
 #   comment out to disable the options.
 #
+APPLE_FN_ENABLE = yes
 BACKLIGHT_ENABLE = no
 BOOTMAGIC_ENABLE = yes	# Virtual DIP switch configuration
 ## (Note that for BOOTMAGIC on Teensy LC you have to use a custom .ld script.)
