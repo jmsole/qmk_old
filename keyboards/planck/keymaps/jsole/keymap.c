@@ -22,6 +22,7 @@ extern keymap_config_t keymap_config;
 enum planck_layers {
   _MAC,
   _WIN,
+  _ALT,
   _LOWER,
   _RAISE,
   _ADJUST
@@ -30,6 +31,7 @@ enum planck_layers {
 enum planck_keycodes {
   MAC = SAFE_RANGE,
   WIN,
+  ALT,
   // BACKLIT,
 };
 
@@ -64,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |RSh/" |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | RAlt | Ctrl | Alt  | GUI  |Lower |Space |Sp/RAl|Raise | Left | Down |  Up  |Right |
+ * | RAlt | Ctrl | GUI  | Alt  |Lower |Space |Sp/RAl|Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_WIN] = LAYOUT_planck_grid(
@@ -72,6 +74,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT ,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MT(MOD_RSFT, KC_QUOT),
     KC_RALT, KC_LCTL, KC_LGUI, KC_LALT,LOWER,KC_SPC,MT(MOD_RALT,KC_SPC),RAISE,KC_LEFT, KC_DOWN,  KC_UP,   KC_RGHT
+),
+
+/* Alt
+ * ,-----------------------------------------------------------------------------------.
+ * |  `   |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * | Tab  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |Enter |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |  Up  |RSh/" |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Ctrl | GUI  | Alt  | RAlt |Lower |Space |Sp/RAl|Raise |  /   | Left | Down |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_ALT] = LAYOUT_planck_grid(
+    KC_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P, KC_BSPC,
+    KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,KC_SCLN, KC_ENT ,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,KC_UP, MT(MOD_RSFT, KC_QUOT),
+    KC_LCTL, KC_LGUI, KC_LALT, KC_RALT,LOWER,KC_SPC,MT(MOD_RALT,KC_SPC),RAISE,KC_SLSH, KC_LEFT,KC_DOWN, KC_RGHT
 ),
 
 /* Lower
@@ -114,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |      | Reset| Debug|      |      |      |      |      |      |      |PrntSc|      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |AudTog|      |Aud on|Audoff|  Mac |  Win |      |      |      |      |      |
+ * |      |AudTog|      |Aud on|Audoff|  Mac |  Win |  Alt |      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|ClkTog|ClkDwn| ClkUp|ClkRst|      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -123,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT_planck_grid(
     _______, RESET,   DEBUG, _______, _______, _______, _______, _______, _______, _______, KC_PSCR, _______,
-    _______,  AU_TOG, MU_MOD,  AU_ON,   AU_OFF,  MAC  ,  WIN   , _______, _______, _______, _______, _______,
+    _______,  AU_TOG, MU_MOD,  AU_ON,   AU_OFF,  MAC  ,  WIN   ,   ALT  , _______, _______, _______, _______,
     _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  CK_TOGG, CK_DOWN, CK_UP, CK_RST, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 )
@@ -152,6 +172,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case WIN:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_WIN);
+      }
+      return false;
+      break;
+      case ALT:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_ALT);
       }
       return false;
       break;
