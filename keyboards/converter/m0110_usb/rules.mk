@@ -2,7 +2,7 @@
 # atmega32u4  Teensy2.0
 # atemga32u4  TMK Converter rev.1
 # atemga32u2  TMK Converter rev.2
-MCU = atmega32u4
+MCU = atmega32u2
 
 # Processor frequency.
 #     This will define a symbol, F_CPU, in all source code files equal to the
@@ -16,8 +16,8 @@ MCU = atmega32u4
 #     reflect the processor speed set externally so that the code can use accurate
 #     software delays.
 #
-#F_CPU = 16000000
-F_CPU = 8000000
+F_CPU = 16000000
+#F_CPU = 8000000
 
 #
 # LUFA specific
@@ -64,7 +64,7 @@ COMMAND_ENABLE   = no   # Commands for debug and configuration
 SLEEP_LED_ENABLE = no   # Breathing sleep LED during USB suspend
 NKRO_ENABLE      = no   # USB Nkey Rollover - not yet supported in LUFA
 EXTRAKEY_ENABLE  = yes
-USB_HID_ENABLE   = yes
+USB_HID_ENABLE   = no
 BACKLIGHT_ENABLE = no
 #BLUETOOTH        = AdafruitBLE  # For Adafruit Feather 32U4 BLE support, uncomment this line
 CUSTOM_MATRIX    = yes
