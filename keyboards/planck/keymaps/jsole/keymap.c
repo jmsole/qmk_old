@@ -151,6 +151,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+uint16_t get_tapping_term(uint16_t keycode) {
+  switch (keycode) {
+    // case RSFT_T(KC_ENT):
+    //   return 100;
+      case RALT_T(KC_SPC):
+      return TAPPING_TERM + 150;
+    default:
+      return TAPPING_TERM;
+  }
+}
+
 #ifdef AUDIO_ENABLE
   float plover_song[][2]     = SONG(PLOVER_SOUND);
   float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
