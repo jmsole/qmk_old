@@ -90,10 +90,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
 #define TAPPING_TOGGLE 2
-#define TAPPING_TERM_PER_KEY
+// #define TAPPING_TERM_PER_KEY
 #define IGNORE_MOD_TAP_INTERRUPT
 // #define PERMISSIVE_HOLD
 #define RETRO_TAPPING
-#define TAPPING_TERM 150
+#define TAPPING_TERM 270
 
 #endif
